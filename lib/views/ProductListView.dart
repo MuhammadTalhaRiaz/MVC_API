@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvc_api/blocs/bloc/ProductCubit.dart';
 import 'package:mvc_api/viewmodels/ProductViewModel.dart';
+import 'package:mvc_api/views/ProductDetailView.dart';
 import 'package:provider/provider.dart';
 
 class ProductListView extends StatelessWidget {
@@ -23,9 +24,14 @@ class ProductListView extends StatelessWidget {
                 itemCount: viewModel.products.length,
                 itemBuilder: (context, index) {
                   final product = viewModel.products[index];
-                  return ListTile(
-                    title: Text(product.name),
-                    subtitle: Text('Color: ${product.data?.color}, Capacity: ${product.data?.capacity}'),
+                  return GestureDetector(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => ProductDetailView(productId: viewModel.products[index].id)));
+                    },
+                    child: ListTile(
+                      title: Text(product.name),
+                      subtitle: Text('Color: ${product.data?.color}, Capacity: ${product.data?.capacity}'),
+                    ),
                   );
                 },
               );

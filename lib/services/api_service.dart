@@ -47,4 +47,16 @@ class ApiService {
       throw Exception('Failed to load products');
     }
   }
+
+  Future<Product?> fetchProductById(String id) async {
+    final response = await http.get(Uri.parse('https://api.restful-api.dev/objects/$id'));
+
+    if (response.statusCode == 200) {
+      print("response :${response.body}");
+      Map<String, dynamic> jsonResponse = json.decode(response.body);
+      return Product.fromJson(jsonResponse);  // Parse a single product
+    } else {
+      throw Exception('Failed to load products');
+    }
+  }
 }

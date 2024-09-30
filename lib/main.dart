@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvc_api/blocs/bloc/LoginBloc.dart';
 import 'package:mvc_api/blocs/bloc/ProductCubit.dart';
+import 'package:mvc_api/blocs/bloc/ProductDetailsCubit.dart';
 import 'package:mvc_api/services/api_service.dart';
 import 'package:mvc_api/views/ProductListView.dart';
 
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProductCubit>(  // Add ProductCubit here
           create: (context) => ProductCubit(apiService),
+        ),
+        BlocProvider<ProductdetailsCubit>(  // Add ProductCubit here
+          create: (context) => ProductdetailsCubit(apiService),
         ),
       ],
       child: MaterialApp(
